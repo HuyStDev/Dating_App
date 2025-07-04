@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Lấy eventId từ query string
   const urlParams = new URLSearchParams(window.location.search);
   const eventId = urlParams.get('eventId');
-  const API_URL = `http://localhost:5000/api/events/${eventId}/registrations`;
-  const EVENT_INFO_URL = `http://localhost:5000/api/events/${eventId}`;
+  const API_URL = `https://dating-app-pzb4.onrender.com/api/events/${eventId}/registrations`;
+  const EVENT_INFO_URL = `https://dating-app-pzb4.onrender.com/api/events/${eventId}`;
   const tableBody = document.querySelector('#registrationsTable tbody');
   const eventInfoDiv = document.getElementById('eventInfo');
 

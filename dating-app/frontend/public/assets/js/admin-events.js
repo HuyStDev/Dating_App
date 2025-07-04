@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const API_URL = 'http://localhost:5000/api/events';
+  const API_URL = 'https://dating-app-pzb4.onrender.com/api/events';
   const tableBody = document.querySelector('#eventsTable tbody');
   const btnAddEvent = document.getElementById('btnAddEvent');
   const modal = document.getElementById('eventFormModal');
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Lấy token nếu cần xác thực
     const token = localStorage.getItem('token');
     // Lấy thông tin sự kiện
-    fetch(`http://localhost:5000/api/events/${eventId}`)
+    fetch(`https://dating-app-pzb4.onrender.com/api/events/${eventId}`)
       .then(res => res.json())
       .then(event => {
         eventInfoDiv.innerHTML = `
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
       });
     // Lấy danh sách đăng ký
-    fetch(`http://localhost:5000/api/events/${eventId}/registrations`, {
+    fetch(`https://dating-app-pzb4.onrender.com/api/events/${eventId}/registrations`, {
       headers: token ? { 'Authorization': 'Bearer ' + token } : {}
     })
       .then(res => res.json())
@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
     tbody.innerHTML = '<tr><td colspan="8">Đang tải...</td></tr>';
     // Lấy token nếu có
     const token = localStorage.getItem('token');
-    fetch('http://localhost:5000/api/users', {
+    fetch('https://dating-app-pzb4.onrender.com/api/users', {
       headers: token ? { 'Authorization': 'Bearer ' + token } : {}
     })
       .then(res => res.json())
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function renderStats() {
     // Lấy token nếu có
     const token = localStorage.getItem('token');
-    fetch('http://localhost:5000/api/users/stats', {
+    fetch('https://dating-app-pzb4.onrender.com/api/users/stats', {
       headers: token ? { 'Authorization': 'Bearer ' + token } : {}
     })
       .then(res => res.json())

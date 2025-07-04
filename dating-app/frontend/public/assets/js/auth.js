@@ -1,4 +1,3 @@
-
 // Khai báo các biến form
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
@@ -35,7 +34,7 @@ loginForm.addEventListener('submit', async (e) => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    const response = await fetch('http://localhost:5000/api/auth/login', {
+    const response = await fetch('https://dating-app-pzb4.onrender.com/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -92,7 +91,7 @@ registerForm.addEventListener('submit', async (e) => {
     }
 
     // Gửi dữ liệu đăng ký
-    const res = await fetch('http://localhost:5000/api/auth/register', {
+    const res = await fetch('https://dating-app-pzb4.onrender.com/api/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -124,7 +123,7 @@ if (forgotPasswordForm) {
     const identifier = document.getElementById('forgot-input').value;
     
     try {
-      const response = await fetch('http://localhost:5000/api/auth/forgot-password', {
+      const response = await fetch('https://dating-app-pzb4.onrender.com/api/auth/forgot-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ identifier }),

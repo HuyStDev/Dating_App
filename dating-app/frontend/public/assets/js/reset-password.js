@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/api/auth/reset-password/${id}/${token}`, {
+            const response = await fetch(`https://dating-app-pzb4.onrender.com/api/auth/reset-password/${id}/${token}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ password }),

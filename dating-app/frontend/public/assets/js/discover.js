@@ -10,7 +10,7 @@ function initDiscover(detail) {
   if (isDiscoverInitialized) return;
 
   const { token, userData } = detail;
-  const backendUrl = "http://localhost:5000";
+  const backendUrl = 'https://dating-app-pzb4.onrender.com';
 
   const loadingIndicator = document.getElementById("loading");
   const emptyState = document.getElementById("emptyState");
@@ -413,7 +413,7 @@ function initDiscover(detail) {
 // --- Sự kiện quảng cáo sidebar ---
 async function fetchOngoingEvents() {
   try {
-    const res = await fetch('http://localhost:5000/api/events');
+    const res = await fetch('https://dating-app-pzb4.onrender.com/api/events');
     const events = await res.json();
     const now = new Date();
     return events.filter(ev => new Date(ev.end_time) >= now);

@@ -1,7 +1,7 @@
 // Di chuyển các biến cần tồn tại lâu dài ra ngoài scope của hàm init
 let isProfileInitialized = false;
 let token = null;
-const backendUrl = "http://localhost:5000";
+const backendUrl = 'https://dating-app-pzb4.onrender.com';
 
 // Đưa tất cả các hàm ra ngoài scope của init
 // để chúng có thể được gọi lại mà không cần khởi tạo lại từ đầu.

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const API_URL = 'http://localhost:5000/api/events';
+  const API_URL = 'https://dating-app-pzb4.onrender.com/api/events';
   const section = document.getElementById('eventSection');
   const modal = document.getElementById('eventRegisterModal');
   const closeModal = modal ? modal.querySelector('.close') : null;

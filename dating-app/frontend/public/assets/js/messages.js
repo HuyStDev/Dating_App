@@ -10,7 +10,7 @@ function initMessages(detail) {
   if (isMessagesInitialized) return;
 
   const { token, userData } = detail;
-  const backendUrl = "http://localhost:5000";
+  const backendUrl = 'https://dating-app-pzb4.onrender.com';
 
   // DOM Elements
   const tabButtons = document.querySelectorAll(".messages-tabs .tab-btn");
