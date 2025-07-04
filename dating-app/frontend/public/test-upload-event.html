@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Upload Ảnh Sự Kiện</title>
+</head>
+<body>
+  <h2>Test Upload Ảnh Sự Kiện</h2>
+  <form action="http://localhost:5000/api/events" method="post" enctype="multipart/form-data">
+    <label>Tiêu đề: <input type="text" name="title" value="Test sự kiện"></label><br>
+    <label>Mô tả: <input type="text" name="description" value="Test upload"></label><br>
+    <label>Địa điểm: <input type="text" name="location" value="Test location"></label><br>
+    <label>Thời gian bắt đầu: <input type="text" name="start_time" value="2025-07-04T23:03"></label><br>
+    <label>Thời gian kết thúc: <input type="text" name="end_time" value="2025-07-26T23:05"></label><br>
+    <label>Ảnh sự kiện: <input type="file" name="image" accept="image/*"></label><br>
+    <button type="submit">Upload</button>
+  </form>
+</body>
+</html> 

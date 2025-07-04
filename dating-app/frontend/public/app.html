@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dating App</title>
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/messages.css" />
+    <link rel="stylesheet" href="assets/css/discover.css" />
+    <link rel="stylesheet" href="assets/css/profile.css" />
+    <link rel="stylesheet" href="assets/css/events.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css" />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <h1 id="appLogo"><span style="color:#e91e63">❤</span> DatingApp</h1>
+        </div>
+        <div class="nav-links-group">
+          <a href="#" class="nav-link active" data-section="discover">
+            <i class="fas fa-search"></i>
+            <span>Tìm bạn</span>
+          </a>
+          <a href="#" class="nav-link" data-section="messages">
+            <i class="fas fa-comments"></i>
+            <span>Tin nhắn</span>
+          </a>
+          <a href="#" class="nav-link" data-section="profile">
+            <i class="fas fa-user"></i>
+            <span>Hồ sơ</span>
+          </a>
+          <a href="#" class="nav-link" data-section="event" id="nav-event">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Sự kiện</span>
+          </a>
+        </div>
+        <a href="#" id="logout" class="nav-link-logout">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Đăng xuất</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Discover Section -->
+      <section id="discoverSection" class="content-section active">
+        <div class="discover-header">
+          <!-- Đã xóa filter-controls cũ ở đây, chỉ giữ lại bộ lọc mới ở dưới -->
+        </div>
+
+        <div class="discover-main-layout">
+          <div class="discover-container">
+            <!-- Loading State -->
+            <div id="loading" class="loading-indicator">
+              <div class="spinner"></div>
+              <p>Đang tìm kiếm...</p>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="profile-card" id="profileCard" style="display: none">
+              <button
+                id="toggleDetailsBtn"
+                class="profile-detail-btn"
+                title="Ẩn/hiện thông tin chi tiết"
+              >
+                <i class="fas fa-eye"></i>
+              </button>
+              <div class="card-images">
+                <div class="image-slider" id="imageSlider">
+                  <img
+                    id="currentImage"
+                    src="./assets/images/default-avatar.jpg"
+                    alt="Profile photo"
+                  />
+                  <div class="image-indicators" id="imageIndicators"></div>
+                  <button class="slider-btn prev" id="prevPhotoBtn">
+                    <i class="fas fa-chevron-left"></i>
+                  </button>
+                  <button class="slider-btn next" id="nextPhotoBtn">
+                    <i class="fas fa-chevron-right"></i>
+                  </button>
+                  <!-- Overlay info -->
+                  <div class="card-overlay">
+                    <div class="overlay-top">
+                      <span class="location" id="profileLocation">📍 Vị trí</span>
+                    </div>
+                    <div class="overlay-bottom" id="profileDetailsBox">
+                      <div class="profile-main-info">
+                        <h2 id="profileName">Tên</h2>
+                        <span id="profileAge">--</span>
+                      </div>
+                      <div class="profile-meta-row">
+                        <span id="profileGender">
+                          <i
+                            class="fas fa-mars gender-icon"
+                            style="color: #2196f3"
+                          ></i>
+                          Giới tính
+                        </span>
+                        <span class="meta-sep">|</span>
+                        <span id="profileHeight">
+                          <i class="fas fa-ruler-vertical"></i> -- cm
+                        </span>
+                        <span class="meta-sep">|</span>
+                        <span id="profileWeight">
+                          <i class="fas fa-weight-hanging"></i> -- kg
+                        </span>
+                      </div>
+                      <div class="profile-bio" id="profileBio">
+                        Giới thiệu sẽ hiển thị ở đây...
+                      </div>
+                      <div class="profile-hobbies" id="profileHobbiesTags">
+                        <!-- Badge sở thích sẽ render ở đây -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Card actions tách riêng dưới card -->
+            <div class="card-actions card-actions-centered" id="cardActionsBar">
+              <button class="action-btn dislike" id="dislikeBtn">
+                <i class="fas fa-times"></i>
+              </button>
+              <button class="action-btn like" id="likeBtn">
+                <i class="fas fa-heart"></i>
+              </button>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state">
+              <p>
+                Rất tiếc, không tìm thấy ai phù hợp với tiêu chí của bạn.
+                <br />
+                Hãy thử thay đổi bộ lọc hoặc quay lại sau nhé!
+              </p>
+              <button id="refreshBtn" class="refresh-btn">Thử lại</button>
+            </div>
+
+            <!-- Filter Button ở góc dưới -->
+            <div class="filter-controls filter-controls-bottom">
+              <button id="filterToggleBtn" class="filter-toggle-btn">
+                <i class="fas fa-filter"></i> Bộ lọc
+              </button>
+              <div id="filterDropdown" class="filter-dropdown">
+                <form id="filterForm" autocomplete="off">
+                  <div class="filter-row">
+                    <label for="genderFilter" class="filter-label"
+                      >Giới tính</label
+                    >
+                    <select id="genderFilter" class="filter-select">
+                      <option value="">Tất cả</option>
+                      <option value="nam">Nam</option>
+                      <option value="nữ">Nữ</option>
+                    </select>
+                  </div>
+                  <div class="filter-row">
+                    <label class="filter-label">Độ tuổi</label>
+                    <input
+                      type="number"
+                      id="minAge"
+                      class="filter-input"
+                      min="18"
+                      max="100"
+                      placeholder="Từ"
+                    />
+                    <span class="age-label">-</span>
+                    <input
+                      type="number"
+                      id="maxAge"
+                      class="filter-input"
+                      min="18"
+                      max="100"
+                      placeholder="Đến"
+                    />
+                  </div>
+                  <div class="filter-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
+                    <label class="filter-label" style="font-weight:600;margin-bottom:2px;">Khoảng cách (km)</label>
+                    <div style="width:100%;display:flex;align-items:center;gap:10px;">
+                      <span id="distanceMinLabel" style="min-width:32px;color:#e91e63;font-weight:600;">0</span>
+                      <div id="distanceSlider" style="flex:1;"></div>
+                      <span id="distanceMaxLabel" style="min-width:32px;color:#e91e63;font-weight:600;">30</span>
+                    </div>
+                  </div>
+                  <div class="filter-actions">
+                    <button type="submit" class="apply-filter-btn">
+                      <i class="fas fa-check"></i> Áp dụng
+                    </button>
+                    <button
+                      type="button"
+                      id="closeFilterBtn"
+                      class="close-filter-btn"
+                    >
+                      <i class="fas fa-times"></i> Đóng
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <aside class="event-ads-sidebar" id="eventAdsSidebar">
+            <h3>
+              Sự kiện nổi bật
+              <span id="eventSidebarEye" style="cursor:pointer;margin-left:8px;color:#e91e63;" title="Xem tất cả sự kiện">
+                <i class="fas fa-eye"></i>
+              </span>
+            </h3>
+            <div id="eventAdsList"></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Messages Section -->
+      <section id="messagesSection" class="content-section">
+        <div class="messages-container">
+          <!-- Left Panel: Tabs + Danh sách chat -->
+          <div class="messages-left-panel">
+            <div class="messages-header">
+              <div class="messages-tabs">
+                <button class="tab-btn active" data-tab="liked-you">
+                  <i class="fas fa-heart"></i> Like <span class="tab-badge" id="likedBadge"></span>
+                </button>
+                <button class="tab-btn" data-tab="matches">
+                  <i class="fas fa-user-friends"></i> Match <span class="tab-badge" id="matchBadge"></span>
+                </button>
+                <button class="tab-btn" data-tab="deleted">
+                  <i class="fas fa-eye-slash"></i> Ẩn
+                </button>
+              </div>
+            </div>
+            <div class="tab-content-container">
+              <div id="likedYouTab" class="tab-content">
+                <div id="messagesList" class="chat-list"></div>
+              </div>
+              <div id="matchesTab" class="tab-content active">
+                <div id="chatList" class="chat-list"></div>
+              </div>
+              <div id="deletedTab" class="tab-content">
+                <div id="deletedMatchesList" class="chat-list"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Right Panel: Chat Window -->
+          <div id="chatWindow" class="chat-window">
+            <div class="chat-header" id="chatHeader">
+              <div class="chat-user-info">
+                <button
+                  id="backToListBtn"
+                  class="chat-back-btn"
+                  style="display: none"
+                >
+                  <i class="fas fa-arrow-left"></i>
+                </button>
+                <img
+                  id="chatUserAvatar"
+                  src="./assets/images/default-avatar.jpg"
+                  alt="User avatar"
+                />
+                <div>
+                  <h3 id="chatUserName">Chọn cuộc trò chuyện</h3>
+                  <span id="chatUserStatus">Trực tuyến</span>
+                </div>
+              </div>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+              <div class="no-chat-selected">
+                <i class="fas fa-comments"></i>
+                <p>Chọn một cuộc trò chuyện để bắt đầu</p>
+              </div>
+            </div>
+            <div class="chat-input">
+              <button id="attachImageBtn" class="attach-btn" title="Gửi ảnh">
+                <i class="fas fa-image"></i>
+              </button>
+              <button id="shareLinkBtn" class="attach-btn" title="Chia sẻ mạng xã hội">
+                <i class="fas fa-share-alt"></i>
+              </button>
+              <input
+                type="text"
+                id="messageInput"
+                placeholder="Nhập tin nhắn..."
+              />
+              <button id="sendBtn">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+            <!-- Input file ẩn cho upload ảnh -->
+            <input
+              type="file"
+              id="imageInput"
+              accept="image/*"
+              style="display: none"
+            />
+            <!-- Popup chọn mạng xã hội -->
+            <div id="shareLinkPopup" class="share-link-popup">
+              <!-- Các nút mạng xã hội sẽ render bằng JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Profile Section -->
+      <section id="profileSection" class="content-section">
+        <div class="profile-container">
+          <!-- Profile Preview -->
+          <div id="profilePreview" class="profile-preview">
+            <div class="profile-main-row">
+              <div class="profile-avatar">
+                <img
+                  id="previewProfileImage"
+                  src="./assets/images/default-avatar.jpg"
+                  alt="Avatar"
+                />
+                <button id="changeAvatarBtn" class="change-avatar-btn">
+                  <i class="fas fa-camera"></i>
+                </button>
+              </div>
+              <div class="profile-info">
+                <div class="editable-field" data-field="name">
+                  <h2 id="previewProfileName" class="field-value">
+                    Tên người dùng
+                  </h2>
+                  <i class="fas fa-pencil-alt edit-icon"></i>
+                </div>
+                <div class="profile-stats">
+                  <div class="editable-field" data-field="age">
+                    <span id="previewProfileAge" class="field-value">
+                      -- tuổi
+                    </span>
+                    <i class="fas fa-pencil-alt edit-icon"></i>
+                  </div>
+                  <div class="editable-field" data-field="gender">
+                    <span id="previewProfileGender" class="field-value">
+                      <i
+                        class="fas fa-mars gender-icon"
+                        style="color: #2196f3"
+                      ></i>
+                      Giới tính
+                    </span>
+                    <i class="fas fa-pencil-alt edit-icon"></i>
+                  </div>
+                </div>
+                <div class="editable-field" data-field="bio">
+                  <p id="previewProfileBio" class="field-value profile-bio">
+                    Giới thiệu về bản thân...
+                  </p>
+                  <i class="fas fa-pencil-alt edit-icon"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-details">
+              <div class="detail-group">
+                <h3><i class="fas fa-info-circle"></i> Thông tin chi tiết</h3>
+
+                <div class="detail-item editable-field" data-field="birthday">
+                  <i class="fas fa-birthday-cake"></i>
+                  <span class="field-label">Ngày sinh:</span>
+                  <span id="previewProfileBirthday" class="field-value"
+                    >Chưa cập nhật</span
+                  >
+                  <i class="fas fa-pencil-alt edit-icon"></i>
+                </div>
+                <div class="detail-item editable-field" data-field="weight">
+                  <i class="fas fa-weight-hanging"></i>
+                  <span class="field-label">Cân nặng:</span>
+                  <span id="previewProfileWeight" class="field-value"
+                    >Chưa cập nhật</span
+                  >
+                  <i class="fas fa-pencil-alt edit-icon"></i>
+                </div>
+                <div class="detail-item editable-field" data-field="height">
+                  <i class="fas fa-ruler-vertical"></i>
+                  <span class="field-label">Chiều cao:</span>
+                  <span id="previewProfileHeight" class="field-value"
+                    >Chưa cập nhật</span
+                  >
+                  <i class="fas fa-pencil-alt edit-icon"></i>
+                </div>
+                <div class="detail-item editable-field" data-field="hobbies">
+                  <i class="fas fa-heart"></i>
+                  <span class="field-label">Sở thích:</span>
+                  <div class="hobbies-box">
+                    <span id="previewProfileHobbies" class="field-value hobbies-badge-list"></span>
+                    <button id="addHobbyBtn" type="button" class="add-hobby-btn" title="Thêm sở thích"><i class="fas fa-plus"></i></button>
+                  </div>
+                  <!-- <i class="fas fa-pencil-alt edit-icon"></i> -->
+                </div>
+                <div class="detail-item editable-field" data-field="job">
+                  <i class="fas fa-briefcase"></i>
+                  <span class="field-label">Công việc:</span>
+                  <span id="previewProfileJob" class="field-value"
+                    >Chưa cập nhật</span
+                  >
+                  <i class="fas fa-pencil-alt edit-icon"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Links Section -->
+            <div class="profile-social-links">
+              <h3><i class="fas fa-share-alt"></i> Mạng xã hội</h3>
+              <div class="social-link-row editable-field" data-field="facebook">
+                <i class="fab fa-facebook"></i>
+                <span class="field-label">Facebook:</span>
+                <span id="previewProfileFacebook" class="field-value">Chưa cập nhật</span>
+                <i class="fas fa-pencil-alt edit-icon"></i>
+              </div>
+              <div class="social-link-row editable-field" data-field="instagram">
+                <i class="fab fa-instagram"></i>
+                <span class="field-label">Instagram:</span>
+                <span id="previewProfileInstagram" class="field-value">Chưa cập nhật</span>
+                <i class="fas fa-pencil-alt edit-icon"></i>
+              </div>
+              <div class="social-link-row editable-field" data-field="tiktok">
+                <i class="fab fa-tiktok"></i>
+                <span class="field-label">TikTok:</span>
+                <span id="previewProfileTiktok" class="field-value">Chưa cập nhật</span>
+                <i class="fas fa-pencil-alt edit-icon"></i>
+              </div>
+              <div class="social-link-row editable-field" data-field="zalo">
+                <i class="fas fa-comment"></i>
+                <span class="field-label">Zalo:</span>
+                <span id="previewProfileZalo" class="field-value">Chưa cập nhật</span>
+                <i class="fas fa-pencil-alt edit-icon"></i>
+              </div>
+            </div>
+
+            <div class="profile-photos">
+              <h3><i class="fas fa-images"></i> Ảnh của tôi</h3>
+              <div id="userPhotosGallery" class="photos-grid">
+                <!-- Photos will be populated here -->
+              </div>
+            </div>
+          </div>
+          <!-- Thêm input file ẩn cho avatar và gallery -->
+          <input
+            type="file"
+            id="editAvatar"
+            accept="image/*"
+            style="display: none"
+          />
+          <input
+            type="file"
+            id="editPhotos"
+            accept="image/*"
+            multiple
+            style="display: none"
+          />
+        </div>
+      </section>
+
+      <!-- Event Section (Sự kiện) -->
+      <section id="eventSection" class="content-section">
+        <!-- Danh sách sự kiện sẽ được render ở đây -->
+      </section>
+    </main>
+
+    <!-- Match Modal -->
+    <div id="matchModal" class="match-modal">
+      <div class="modal-content">
+        <h2>IT'S A MATCH!</h2>
+        <p>Bạn và <span id="matchName"></span> đã tương hợp!</p>
+      </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+      <div class="image-modal-content">
+        <button class="image-modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+        <img id="modalImage" src="" alt="Full size image" />
+      </div>
+    </div>
+
+    <!-- Modal đăng ký sự kiện -->
+    <div id="eventRegisterModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Đăng ký tham gia sự kiện</h2>
+        <form id="eventRegisterForm">
+          <label>Họ tên: <input type="text" name="name" required></label><br>
+          <label>Email: <input type="email" name="email" required></label><br>
+          <label>Số điện thoại: <input type="text" name="phone"></label><br>
+          <label>Thông tin khác: <textarea name="other_info"></textarea></label><br>
+          <button type="submit">Gửi đăng ký</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal chi tiết sự kiện -->
+    <div id="eventDetailModal" class="modal" style="display:none;align-items:center;justify-content:center;z-index:2000;">
+      <div class="modal-content" style="max-width:520px;width:96vw;position:relative;max-height:90vh;overflow-y:auto;">
+        <span class="close" style="position:absolute;right:18px;top:14px;font-size:1.5rem;color:#e91e63;cursor:pointer;font-weight:bold;">&times;</span>
+        <div id="eventDetailContent"></div>
+      </div>
+    </div>
+    <!-- End Modal chi tiết sự kiện -->
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/discover.js"></script>
+    <script src="assets/js/messages.js"></script>
+    <script src="assets/js/profile.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+    <script src="assets/js/events.js"></script>
+
+    <!-- Bottom Navigation for Mobile -->
+    <nav class="bottom-nav">
+      <a href="#" class="bottom-nav-link active" data-section="discover">
+        <i class="fas fa-search"></i>
+        <span>Tìm bạn</span>
+      </a>
+      <a href="#" class="bottom-nav-link" data-section="messages">
+        <i class="fas fa-comments"></i>
+        <span>Tin nhắn</span>
+      </a>
+      <a href="#" class="bottom-nav-link" data-section="profile">
+        <i class="fas fa-user"></i>
+        <span>Hồ sơ</span>
+      </a>
+      <a href="#" class="bottom-nav-link" data-section="event" id="mobileEventBtn">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Sự kiện</span>
+      </a>
+      <a href="#" class="bottom-nav-link" id="mobileLogoutBtn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Đăng xuất</span>
+      </a>
+    </nav>
+
+    <script>
+    // Tab chuyển section
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Ẩn tất cả section
+        document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+        // Xóa active ở tất cả nav-link
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        // Thêm active cho nav-link được chọn
+        this.classList.add('active');
+        // Hiện section tương ứng
+        const sectionId = this.getAttribute('data-section');
+        if (sectionId) {
+          document.getElementById(sectionId + 'Section').classList.add('active');
+        }
+      });
+    });
+    </script>
+    <style>
+    .content-section { display: none; }
+    .content-section.active { display: block; }
+    </style>
+  </body>
+</html>

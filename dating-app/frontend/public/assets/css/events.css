@@ -1,0 +1,206 @@
+/* Sự kiện - Event Section */
+.event-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-content: center;
+  margin: 32px 0 0 0;
+}
+.event-card {
+  width: 480px;
+  max-width: 100%;
+  min-height: 420px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(233,30,99,0.08), 0 1.5px 6px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+  position: relative;
+  min-width: 0;
+}
+.event-card:hover {
+  box-shadow: 0 4px 24px rgba(233,30,99,0.18), 0 2px 8px rgba(0,0,0,0.08);
+  transform: translateY(-4px) scale(1.02);
+}
+.event-card-img {
+  width: 100%;
+  height: 240px;
+  background: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.event-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.event-card-body {
+  padding: 14px 14px 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.event-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #e91e63;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event-time, .event-location {
+  font-size: 0.95rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event-desc {
+  font-size: 0.98rem;
+  color: #444;
+  margin: 4px 0 8px 0;
+  min-height: 24px;
+  max-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.register-btn {
+  background: linear-gradient(90deg, #e91e63 60%, #ff8a65 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+.register-btn:hover {
+  background: linear-gradient(90deg, #ff8a65 0%, #e91e63 100%);
+}
+@media (max-width: 900px) {
+  .event-list {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .event-card {
+    width: 98vw;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+
+/* Modal đăng ký sự kiện */
+#eventRegisterModal.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: rgba(30, 30, 30, 0.35);
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s;
+}
+#eventRegisterModal .modal-content {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(233,30,99,0.18), 0 2px 8px rgba(0,0,0,0.08);
+  padding: 36px 32px 28px 32px;
+  max-width: 380px;
+  width: 95vw;
+  margin: 0 auto;
+  position: relative;
+  animation: popIn 0.25s;
+}
+#eventRegisterModal .close {
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  font-size: 1.5rem;
+  color: #e91e63;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+#eventRegisterModal .close:hover {
+  color: #ff8a65;
+}
+#eventRegisterModal h2 {
+  text-align: center;
+  color: #e91e63;
+  font-size: 1.35rem;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+#eventRegisterForm {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+#eventRegisterForm label {
+  font-size: 1rem;
+  color: #444;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+#eventRegisterForm input,
+#eventRegisterForm textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 7px;
+  font-size: 1rem;
+  margin-top: 2px;
+  background: #fafafa;
+  transition: border 0.2s;
+}
+#eventRegisterForm input:focus,
+#eventRegisterForm textarea:focus {
+  border: 1.5px solid #e91e63;
+  outline: none;
+  background: #fff;
+}
+#eventRegisterForm textarea {
+  min-height: 80px;
+  max-height: 120px;
+  resize: vertical;
+}
+#eventRegisterForm button[type="submit"] {
+  background: linear-gradient(90deg, #e91e63 60%, #ff8a65 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+#eventRegisterForm button[type="submit"]:hover {
+  background: linear-gradient(90deg, #ff8a65 0%, #e91e63 100%);
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes popIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.event-detail-desc {
+  white-space: pre-line;
+  line-height: 1.6;
+  word-break: break-word;
+  text-align: justify;
+} 
