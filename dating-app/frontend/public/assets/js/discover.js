@@ -426,7 +426,7 @@ function renderEventAdsSidebar(events) {
   const sidebar = document.getElementById('eventAdsList');
   if (!sidebar) return;
   sidebar.innerHTML = '';
-  const backendUrl = "http://localhost:5000";
+  const backendUrl = "https://dating-app-pzb4.onrender.com";
   if (events.length === 0) {
     sidebar.innerHTML = '<p>Không có sự kiện nào đang diễn ra.</p>';
     return;
