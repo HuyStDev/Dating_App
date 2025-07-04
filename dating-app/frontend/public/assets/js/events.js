@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
       section.innerHTML = '<p>Chưa có sự kiện nào.</p>';
       return;
     }
-    const backendUrl = "http://localhost:5000";
+    const backendUrl = "https://dating-app-pzb4.onrender.com";
     section.innerHTML = `
       <div class="event-list">
         ${events.map(event => {
