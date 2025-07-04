@@ -39,6 +39,7 @@ app.use(passport.session());
 // CORS Middleware
 const allowedOrigins = [
   process.env.CLIENT_URL,
+  'https://dating-app-frontend-tcf1.onrender.com',
   'http://localhost:3000',
   'http://127.0.0.1:3000',
   'http://127.0.0.1:5500',
