@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dating App - Tìm kiếm tình yêu đích thực</title>
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="app.html" id="appLogoLink" style="display: flex; align-items: center; gap: 0.7rem; color: inherit; text-decoration: none;">
+            <i class="fas fa-heart"></i>
+            <span>DatingApp</span>
+          </a>
+        </div>
+        <div class="nav-buttons">
+          <a href="login.html" class="btn btn-outline" id="loginBtn">Đăng nhập</a>
+          <a href="login.html#register" class="btn btn-primary" id="registerBtn">Đăng ký</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Tìm kiếm <span class="highlight">tình yêu</span> đích thực
+          </h1>
+          <p class="hero-subtitle">
+            Kết nối với những người có cùng sở thích và tìm kiếm mối quan hệ ý
+            nghĩa
+          </p>
+          <div class="hero-buttons">
+            <a href="login.html#register" class="btn btn-primary btn-large">
+              <i class="fas fa-user-plus"></i>
+              Bắt đầu ngay
+            </a>
+            <a href="#features" class="btn btn-outline btn-large">
+              <i class="fas fa-info-circle"></i>
+              Tìm hiểu thêm
+            </a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="profile-slider">
+            <div class="profile-box" id="profile-box">
+              <img
+                id="profile-img"
+                src="assets/images/Thu_Huong.png"
+                alt="User"
+              />
+              <div class="profile-info">
+                <h4 id="profile-name">Thu Hương</h4>
+                <p id="profile-desc">19 tuổi • Trà Vinh</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+      <div class="container">
+        <h2 class="section-title">Tại sao chọn chúng tôi?</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>An toàn & Bảo mật</h3>
+            <p>
+              Thông tin cá nhân của bạn được bảo vệ tuyệt đối với công nghệ mã
+              hóa tiên tiến
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>Cộng đồng lớn</h3>
+            <p>
+              Hàng nghìn người dùng đang tìm kiếm mối quan hệ ý nghĩa như bạn
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Dễ sử dụng</h3>
+            <p>Giao diện thân thiện, dễ dàng sử dụng trên mọi thiết bị</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <h3>Match thông minh</h3>
+            <p>Thuật toán AI giúp tìm kiếm người phù hợp nhất với bạn</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-it-works">
+      <div class="container">
+        <h2 class="section-title">Cách thức hoạt động</h2>
+        <div class="steps-grid">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Tạo hồ sơ</h3>
+            <p>Đăng ký và tạo hồ sơ cá nhân với thông tin và ảnh của bạn</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Khám phá</h3>
+            <p>Xem hồ sơ của những người khác và swipe phải nếu thích</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Kết nối</h3>
+            <p>
+              Khi cả hai cùng thích nhau, bạn sẽ được match và có thể nhắn tin
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Testimonial Section (comment mẫu) -->
+    <section class="testimonial-section">
+      <div class="container">
+        <div class="testimonial-grid">
+          <div class="testimonial-card">
+            <h3>Minh & Lan</h3>
+            <hr />
+            <p>
+              Nhờ app này, mình đã gặp được Lan. Chúng mình rất hợp nhau và đang
+              hẹn hò. Chúng mình còn không tin vì chỉ cần một cú swipe là kết
+              nối được với nhau.
+            </p>
+            <span class="quote-icon">&#10077;</span>
+          </div>
+          <div class="testimonial-card">
+            <h3>Hùng & Mai</h3>
+            <hr />
+            <p>
+              Mình và Mai đã tìm thấy nhau sau nhiều năm độc thân. Giao diện
+              thân thiện với người dùng, dễ dàng kết nối với nhau.
+            </p>
+            <span class="quote-icon">&#10077;</span>
+          </div>
+          <div class="testimonial-card">
+            <h3>Tuấn & Ngọc</h3>
+            <hr />
+            <p>
+              Mình đã có người yêu đầu tiên khi sử dụng app này, mình mong tương
+              lai ứng dụng sẽ ngày càng phát triển
+            </p>
+            <span class="quote-icon">&#10077;</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container">
+        <h2>Sẵn sàng tìm kiếm tình yêu?</h2>
+        <p>
+          Tham gia ngay hôm nay và bắt đầu hành trình tìm kiếm tình yêu đích
+          thực
+        </p>
+        <div class="cta-buttons">
+          <a href="login.html#register" class="btn btn-primary btn-large">
+            <i class="fas fa-heart"></i>
+            Đăng ký miễn phí
+          </a>
+          <a href="login.html" class="btn btn-outline btn-large">
+            <i class="fas fa-sign-in-alt"></i>
+            Đăng nhập
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>DatingApp</h3>
+            <p>Nền tảng kết nối tình yêu hàng đầu Việt Nam</p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h4>Sản phẩm</h4>
+            <ul>
+              <li><a href="#">Tính năng</a></li>
+              <li><a href="#">Bảo mật</a></li>
+              <li><a href="#">Hỗ trợ</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Công ty</h4>
+            <ul>
+              <li><a href="#">Về chúng tôi</a></li>
+              <li><a href="#">Tuyển dụng</a></li>
+              <li><a href="#">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Pháp lý</h4>
+            <ul>
+              <li><a href="#">Điều khoản sử dụng</a></li>
+              <li><a href="#">Chính sách bảo mật</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 DatingApp. Tất cả quyền được bảo lưu.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/home.js"></script>
+    <script>
+      // Kiểm tra trạng thái đăng nhập (giả sử token lưu ở localStorage key 'token')
+      const isLoggedIn = !!localStorage.getItem('token');
+      if (isLoggedIn) {
+        document.getElementById('loginBtn').style.display = 'none';
+        document.getElementById('registerBtn').style.display = 'none';
+      } else {
+        document.getElementById('loginBtn').style.display = 'inline-block';
+        document.getElementById('registerBtn').style.display = 'inline-block';
+      }
+    </script>
+  </body>
+</html>

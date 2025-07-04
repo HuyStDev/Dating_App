@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dating App - Đăng nhập & Đăng ký</title>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/login.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="auth-container">
+    <!-- Navigation -->
+    <div class="auth-nav">
+      <a href="index.html"><i class="fas fa-home"></i> Trang chủ</a>
+    </div>
+    
+    <h1>Dating App</h1>
+    
+    <div class="forms-wrapper">
+      <!-- Login Form -->
+    <form id="loginForm">
+      <h2>Đăng nhập</h2>
+      <div class="form-group">
+          <input type="text" id="username" required>
+        <label for="username">Tên đăng nhập</label>
+      </div>
+      <div class="form-group">
+          <input type="password" id="password" required>
+        <label for="password">Mật khẩu</label>
+      </div>
+      <button type="submit">Đăng nhập</button>
+        <p class="forgot-password"><a href="#" id="showForgotPassword">Quên mật khẩu?</a></p>
+        <p>Chưa có tài khoản? <a href="#register" class="form-toggle" id="showRegister">Đăng ký ngay</a></p>
+        
+        <div class="social-login">
+          <p class="social-title">Hoặc đăng nhập với</p>
+          <div class="social-buttons">
+            <a href="http://localhost:5000/api/auth/google" class="social-btn google">
+              <i class="fab fa-google"></i> Google
+            </a>
+          </div>
+        </div>
+      </form>
+      
+      <!-- Forgot Password Form -->
+      <form id="forgotPasswordForm">
+        <h2>Khôi phục mật khẩu</h2>
+        <p>Vui lòng nhập email hoặc số điện thoại của bạn. Chúng tôi sẽ gửi cho bạn một liên kết để đặt lại mật khẩu.</p>
+        <div class="form-group">
+          <input type="text" id="forgot-input" required>
+          <label for="forgot-input">Email hoặc Số điện thoại</label>
+        </div>
+        <button type="submit">Gửi liên kết</button>
+        <p>Nhớ mật khẩu rồi? <a href="#login" class="form-toggle" id="backToLogin">Quay lại đăng nhập</a></p>
+    </form>
+    
+      <!-- Register Form -->
+      <form id="registerForm">
+      <h2>Đăng ký</h2>
+      <div class="form-group">
+          <input type="text" id="regUsername" required>
+        <label for="regUsername">Tên đăng nhập</label>
+      </div>
+      <div class="form-group">
+          <input type="password" id="regPassword" required>
+        <label for="regPassword">Mật khẩu</label>
+      </div>
+      <div class="form-group">
+          <input type="password" id="regConfirmPassword" required>
+        <label for="regConfirmPassword">Xác nhận mật khẩu</label>
+        </div>
+        <div class="form-group">
+          <input type="tel" id="register-sdt" required>
+          <label for="register-sdt">Số điện thoại</label>
+      </div>
+      <div class="form-group">
+        <input type="text" id="regName" required>
+          <label for="regName">Tên của bạn</label>
+      </div>
+      <div class="form-group">
+        <select id="regGender" required>
+            <option value="" disabled selected></option>
+          <option value="nam">Nam</option>
+          <option value="nữ">Nữ</option>
+          <option value="khác">Khác</option>
+        </select>
+          <label for="regGender">Giới tính</label>
+      </div>
+      <button type="submit">Đăng ký</button>
+        <p>Đã có tài khoản? <a href="#login" class="form-toggle" id="showLogin">Đăng nhập ngay</a></p>
+        
+        <div class="social-login">
+          <p class="social-title">Hoặc đăng ký với</p>
+          <div class="social-buttons">
+            <a href="http://localhost:5000/api/auth/google" class="social-btn google">
+              <i class="fab fa-google"></i> Google
+            </a>
+          </div>
+        </div>
+    </form>
+    </div>
+  </div>
+
+  <script src="assets/js/login.js"></script>
+  <script src="assets/js/auth.js" defer></script>
+</body>
+</html>

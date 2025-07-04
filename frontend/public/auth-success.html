@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authenticating...</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: sans-serif;
+            background-color: #fce3ec;
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Đang xác thực...</h1>
+        <p>Vui lòng chờ trong giây lát.</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const token = params.get('token');
+            const user = params.get('user');
+
+            if (token) {
+                localStorage.setItem('token', token);
+                
+                // We need the user object to be stored as well.
+                // The best way is to fetch it from a /profile or /me endpoint.
+                fetch('http://localhost:5000/api/profile', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+                .then(res => res.json())
+                .then(userData => {
+                    if (userData) {
+                        localStorage.setItem('user', JSON.stringify(userData));
+                        window.location.href = '/app.html';
+                    } else {
+                        throw new Error('Could not fetch user profile');
+                    }
+                })
+                .catch(err => {
+                    console.error('Authentication Error:', err);
+                    // Redirect to login page on failure
+                    window.location.href = '/login.html?error=profile_fetch_failed';
+                });
+
+            } else {
+                // Handle cases where there's no token
+                window.location.href = '/login.html?error=auth_failed';
+            }
+        });
+    </script>
+</body>
+</html> 
