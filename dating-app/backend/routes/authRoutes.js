@@ -24,13 +24,13 @@ router.get(
 router.get(
   '/google/callback',
   passport.authenticate('google', {
-    failureRedirect: `${process.env.CLIENT_URL}/login?error=auth_failed`,
+    failureRedirect: 'https://dating-app-frontend-tcf1.onrender.com/login?error=auth_failed',
     session: false, // We will use JWT, not sessions
   }),
   (req, res) => {
     // Successful authentication, generate token and redirect
     const token = generateToken(req.user);
-    res.redirect(`${process.env.CLIENT_URL}/auth-success.html?token=${token}`);
+    res.redirect(`https://dating-app-frontend-tcf1.onrender.com/auth-success.html?token=${token}`);
   }
 );
 
