@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 messageElement.style.color = 'green';
                 resetPasswordForm.querySelector('button').disabled = true;
                 setTimeout(() => {
-                    window.location.href = 'login.html';
+                    window.location.href = 'https://dating-app-frontend-tcf1.onrender.com/login.html';
                 }, 3000);
             } else {
                 messageElement.textContent = data.message || 'Có lỗi xảy ra.';
